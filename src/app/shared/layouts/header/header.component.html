@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-md fixed-top goonder-nav py-0" id="navbar-custom">
+  <a class="navbar-brand title" [routerLink]="['']">
+    <img src="assets/images/app/logo-xs.png" alt="Gooner_Logo">
+    <p class="d-inline">{{'APP_NAME' | translate}}</p>
+  </a>
+  <button class="navbar-toggler hidden-sm-up collapse-button" type="button" (click)="isCollapsed = !isCollapsed"
+    data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fa fa-bars"></i>
+  </button>
+  <div [ngbCollapse]="isCollapsed" class="collapse navbar-collapse goonder-navbar-menu" id="navbarsDefault">
+    <ul class="navbar-nav mr-auto nav-right">
+      <li class="nav-item dropdown " ngbDropdown *ngIf="!isCollapsed && isLogged">
+        <a class="nav-item" href="#">
+          {{sessionInfo.firstName}} {{sessionInfo.lastName}}
+        </a>
+      </li>
+      <li class="nav-item dropdown " ngbDropdown *ngIf="!isCollapsed && !isLogged">
+        <a class="nav-item"  [routerLink]="['/users/login']">
+          {{'LOGIN' | translate }}
+        </a>
+      </li>
+      <li class="nav-item dropdown " ngbDropdown *ngIf="!isCollapsed && !isLogged">
+        <a class="nav-item"  [routerLink]="['/users/register']">
+          {{'REGISTER' | translate }}
+        </a>
+      </li>
+      <li class="nav-item dropdown " ngbDropdown>
+        <a class="nav-item" href="#">
+          {{'HOME.NAV_SELLER_PAGE' | translate }}
+        </a>
+      </li>
+      <li class="nav-item dropdown " ngbDropdown>
+        <a class=" nav-item" href="#">
+          {{'HOME.NAV_BUYER_PAGE' | translate }}
+        </a>
+      </li>
+      <!-- <li class="nav-item dropdown " ngbDropdown>
+        <a class="dropdown-toggle nav-item" id="id01" href="#" ngbDropdownToggle>Files</a>
+        <div class="dropdown-menu" aria-labelledby="id01" ngbDropdownMenu>
+          <a class="dropdown-item" href="#">HTML</a>
+          <a class="dropdown-item" href="#">TS</a>
+          <a class="dropdown-item" href="#">JS</a>
+        </div>
+      </li> -->
+
+      <li class="nav-item dropdown " ngbDropdown *ngIf="!isCollapsed && isLogged">
+        <a class="nav-item" href="#">
+          {{'LOGOUT' | translate }}
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="navbar-collapse collapse order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <ng-container *ngIf="!isLogged">
+        <li class="nav-item dropdown " ngbDropdown>
+          <a class="nav-item" [routerLink]="['/users/login']">
+            {{'LOGIN' | translate }}
+          </a>
+        </li>
+        <li class="nav-item dropdown " ngbDropdown>
+          <a class="nav-item"  [routerLink]="['/users/register']">
+            {{'REGISTER' | translate }}
+          </a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="isLogged">
+        <li class="nav-item dropdown " ngbDropdown>
+          <a class="nav-item" href="#">
+            {{sessionInfo.firstName}} {{sessionInfo.lastName}}
+          </a>
+        </li>
+        <li class="nav-item dropdown " ngbDropdown>
+          <a class="nav-item" href="#">
+            {{'LOGOUT' | translate }}
+          </a>
+        </li>
+      </ng-container>
+
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,460 @@
+<main role="main" class="main-content">
+    <div class="container-xl row text-black mx-auto p-3 bg-white">
+      <section id="profileLeftColumn" class="mx-auto "
+      [ngClass]="{'col-md-3': visibleRight, 'mw500': !visibleRight }">
+        <!-- cột bên trái chứa mã & info Facebook -->
+        <div id="profileBasicInfo" class="container my-3">
+          <h2 class="text-center">
+            {{ "PROFILE.YOUR_INFORMATION" | translate }}
+            <i *ngIf="haveSellerID" class="fa fa-pencil text-sm" (click)='viewInfomation()'></i>
+          </h2>
+          <img
+            id="fbAvtPlaceholder"
+            class="circle d-block mx-auto"
+            src="/assets/images/app/profile/default-avt.svg"
+            alt="avt"
+          />
+          <div id="fbNamePlaceholder" class="text-center">Facebook Name</div>
+          <ng-container *ngIf="haveSellerID">
+            <button class="my-3 w-100 text-center d-block" id="sellerID" (click)='copyToClipboard()'>
+              {{sellerID}}
+            </button>
+            <!-- <p>{{ "PROFILE.HAVE_ID" | translate }}</p> -->
+            <p *ngIf="isVerified" class="text-success text-center">
+              <i class="fa fa-check-circle"></i>
+              {{ "PROFILE.VERIFIED" | translate }} 
+            </p>
+            <p *ngIf="!isVerified" class="text-danger text-center">
+              <i class="fa fa-times-circle"></i>
+              {{ "PROFILE.NOT_VERIFIED" | translate }}
+            </p>
+          </ng-container>
+          <ng-container *ngIf="!haveSellerID">
+            <p>{{ "PROFILE.NOT_HAVE_ID" | translate }}</p>
+            <button class="mx-auto d-block btn btn-submit" (click)='viewInfomation()'>{{ 'PROFILE.EDIT_INFO' | translate}}</button>
+          </ng-container>
+        </div>
+      </section>
+      <section id="profileRightColumn" class="border-left col-md-9" *ngIf="visibleRight">
+        <!-- Cột bên phải, chứa form xác thực thông tin -->
+
+        <div id="profileInfo" class="mb-3">
+          <form [formGroup]="updateProfileForm" (ngSubmit)="update()">
+            <button
+              id="updateSellerInfo"
+              *ngIf="false"
+              class="btn btn-submit d-block mx-auto px-5"
+            >
+              {{ "PROFILE.ACTION.EDIT" | translate }}
+            </button>
+            <!-- End Button mở khóa form -->
+
+            <!-- Begin Nhóm thông tin cơ bản -->
+            <fieldset>
+              <legend>{{ "PROFILE.YOUR_INFORMATION_SELLER" | translate }}</legend>
+              <div class="form-row">
+                  <div class="form-group col-sm-2">
+                    <label for="inputFirstName"
+                      >{{ "SELLER_FIRSTNAME" | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputFirstName"
+                      name="sellerFirstName"
+                      placeholder="{{
+                        'PROFILE.PLACEHOLDER.SELLER_FIRSTNAME' | translate
+                      }}"
+                      formControlName="firstName"
+                      [ngClass]="{
+                        'is-invalid':
+                          f.firstName.errors &&
+                          f.firstName.invalid &&
+                          (f.firstName.dirty || f.firstName.touched)
+                      }"
+                    />
+                    <div
+                      *ngIf="
+                        f.firstName.errors &&
+                        f.firstName.invalid &&
+                        (f.firstName.dirty || f.firstName.touched)
+                      "
+                      class="invalid-feedback"
+                    >{{ "PROFILE.ERRORS.REQUIRED" | translate }}</div>
+                  </div>
+                  <div class="form-group col-sm-4">
+                    <label for="inputLastName"
+                      >{{ "SELLER_LASTNAME" | translate }}
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputLastName"
+                      name="sellerLastName"
+                      placeholder="{{
+                        'PROFILE.PLACEHOLDER.SELLER_LASTNAME' | translate
+                      }}"
+                      formControlName="lastName"
+                      [ngClass]="{
+                        'is-invalid':
+                          f.lastName.errors &&
+                          f.lastName.invalid &&
+                          (f.lastName.dirty || f.lastName.touched)
+                      }"
+                    />
+                    <div
+                      *ngIf="
+                        f.lastName.errors &&
+                        f.lastName.invalid &&
+                        (f.lastName.dirty || f.lastName.touched)
+                      "
+                      class="invalid-feedback"
+                    >
+                      {{ "PROFILE.ERRORS.REQUIRED" | translate }}
+                    </div>
+                  </div>
+                <div class="form-group col-sm-6">
+                  <label for="inputPhoneNumber">{{
+                    "SELLER_TELEPHONE" | translate
+                  }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputPhoneNumber"
+                    name="sellerTelephone"
+                    placeholder="0909789789"
+                    formControlName="phone"
+                    [ngClass]="{
+                      'is-invalid':
+                        f.phone.errors &&
+                        f.phone.invalid &&
+                        (f.phone.dirty || f.phone.touched)
+                    }"
+                  />
+                  <div
+                    *ngIf="
+                      f.phone.errors &&
+                      f.phone.invalid &&
+                      (f.phone.dirty || f.phone.touched)
+                    "
+                    class="invalid-feedback"
+                  >
+                    {{ "PROFILE.ERRORS.REQUIRED" | translate }}
+                  </div>
+                </div>
+                
+                <div class="form-group col-sm-3">
+                  <label for="inputProvince">{{ "SELLER_PROVINCE" | translate }}</label>
+                  <ng-select 
+                    id="inputProvince"
+                    formControlName= "orderReturnProvince"
+                    [items]="provinces" 
+                    bindLabel="name" 
+                    bindValue="id" 
+                    [(ngModel)]="selectedProvince"
+                    [ngClass]="{
+                      'is-invalid':
+                        f.orderReturnProvince.errors &&
+                        f.orderReturnProvince.invalid &&
+                        (f.orderReturnProvince.dirty || f.orderReturnProvince.touched)
+                    }">
+                  </ng-select>
+                  <div
+                    *ngIf="
+                      f.orderReturnProvince.errors &&
+                      f.orderReturnProvince.invalid &&
+                      (f.orderReturnProvince.dirty || f.orderReturnProvince.touched)
+                    "
+                    class="invalid-feedback"
+                  >{{ "PROFILE.ERRORS.REQUIRED" | translate }}</div>
+                </div>
+                <div class="form-group col-sm-9">
+                  <label for="inputAddress">{{
+                    "SELLER_ADDRESS" | translate
+                  }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputAddress"
+                    name="sellerAddress"
+                    formControlName="orderReturnAddress"
+                    placeholder="{{
+                      'PROFILE.PLACEHOLDER.SELLER_ADDRESS' | translate
+                    }}"
+                  />
+                </div>
+              </div>
+            </fieldset>
+            <!-- End Nhóm thông tin cơ bản -->
+
+            <!-- Begin Nhóm thông tin ngân hàng -->
+            <fieldset>
+              <legend>
+                {{ "PROFILE.YOUR_INFORMATION_BANKING" | translate }}
+              </legend>
+              <div class="form-row">
+                <div class="form-group col-sm-6">
+                  <label for="inputIDCardFront" class="w-100">
+                    <p>{{ "PROFILE.ID_CARD_FRONT" | translate }}</p>
+                    <img
+                      [src]="this.cardFront"
+                      id="IDCard-Front"
+                    />
+                  </label>
+                  <input
+                    type="file"
+                    class="form-control d-none locked-field"
+                    id="inputIDCardFront"
+                    name="idCardFront"
+                    #file
+                    accept="image/*"
+                    (change)="preview(file.files, 1)"
+                  />
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="inputIDCardBack" class="w-100">
+                    <p>{{ "PROFILE.ID_CARD_BACK" | translate }}</p>
+                    <img
+                      [src]="this.cardBack"
+                      id="IDCard-Back"
+                    />
+                  </label>
+                  <input
+                    type="file"
+                    class="form-control d-none locked-field"
+                    id="inputIDCardBack"
+                    name="idCardBack"
+                    #file
+                    accept="image/*"
+                    (change)="preview(file.files, 2)"
+                  />
+                </div>
+                <div class="w-100"></div>
+                <div class="form-group col-sm-6">
+                  <label for="inputAccountHolder">{{
+                    "ACCOUNT_HOLDER" | translate
+                  }}</label>
+                  <input
+                    type="text"
+                    class="form-control locked-field"
+                    id="inputAccountHolder"
+                    name="accountHolder"
+                    placeholder="{{
+                      'PROFILE.PLACEHOLDER.ACCOUNT_HOLDER' | translate
+                    }}"
+                    formControlName="accountHolder"
+                    [ngClass]="{
+                      'is-invalid':
+                        f.accountHolder.errors &&
+                        f.accountHolder.invalid &&
+                        (f.accountHolder.dirty || f.accountHolder.touched)
+                    }"
+                  />
+                  <div
+                    *ngIf="
+                      f.accountHolder.errors &&
+                      f.accountHolder.invalid &&
+                      (f.accountHolder.dirty || f.accountHolder.touched)
+                    "
+                    class="invalid-feedback"
+                  >{{ "PROFILE.ERRORS.ACCOUNT_HOLDER" | translate }}</div>
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="inputBankNumber">{{
+                    "ACCOUNT_NUMBER" | translate
+                  }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputBankNumber"
+                    name="accountNumber"
+                    formControlName="accountNumber"
+                    placeholder="{{
+                      'PROFILE.PLACEHOLDER.ACCOUNT_NUMBER' | translate
+                    }}"
+                  />
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="inputbankName">{{ "PROFILE.BANKING_NAME" | translate }}</label>
+                  <ng-select 
+                    id="inputbankName"
+                    formControlName= "bankName"
+                    [items]="bankNames" 
+                    bindLabel="name" 
+                    bindValue="id" 
+                    [(ngModel)]="selectedBankName"
+                    [ngClass]="{
+                      'is-invalid':
+                        f.bankName.errors &&
+                        f.bankName.invalid &&
+                        (f.bankName.dirty || f.bankName.touched)
+                    }">
+                  </ng-select>
+                  <div
+                    *ngIf="
+                      f.bankName.errors &&
+                      f.bankName.invalid &&
+                      (f.bankName.dirty || f.bankName.touched)
+                    "
+                    class="invalid-feedback"
+                  >{{ "PROFILE.ERRORS.REQUIRED" | translate }}</div>
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="inputBankBranch">{{
+                    "PROFILE.BANKING_BRANCH" | translate
+                  }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputBankBranch"
+                    name="bankBranch"
+                    formControlName="bankBranch"
+                    placeholder="{{
+                      'PROFILE.PLACEHOLDER.BANKING_BRANCH' | translate
+                    }}"
+                  />
+                </div>
+              </div>
+            </fieldset>
+            <!-- End Nhóm thông tin ngân hàng -->
+
+            <!-- Begin Nhóm thông tin shop -->
+            <fieldset>
+              <legend>{{ "PROFILE.YOUR_INFORMATION_SHOP" | translate }}</legend>
+              <div class="form-row">
+                <div class="form-group col-sm-6">
+                  <label for="inputLink1">{{
+                    "FACEBOOK_SELLER" | translate
+                  }}</label>
+                  <input
+                    type="text"
+                    class="form-control locked-field"
+                    id="inputLink1"
+                    name="sellerUrlProfile"
+                    placeholder="https://www.facebook.com/sellerProfile"
+                    formControlName="sellerUrlProfile"
+                    [ngClass]="{
+                      'is-invalid':
+                        f.sellerUrlProfile.errors &&
+                        f.sellerUrlProfile.invalid &&
+                        (f.sellerUrlProfile.dirty || f.sellerUrlProfile.touched)
+                    }"
+                  />
+                  <div
+                    *ngIf="
+                      f.sellerUrlProfile.errors &&
+                      f.sellerUrlProfile.invalid &&
+                      (f.sellerUrlProfile.dirty || f.sellerUrlProfile.touched)
+                    "
+                    class="invalid-feedback"
+                  >{{ "PROFILE.ERRORS.LINK" | translate }}</div>
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="inputLink2">{{
+                    "FACEBOOK_PERSONAL" | translate
+                  }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputLink2"
+                    name="personalUrlProfile"
+                    formControlName="personalUrlProfile"
+                    placeholder="https://www.facebook.com/sellerPersonalProfile"
+                  />
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="inputLink3">{{
+                    "FACEBOOK_FANPAGE" | translate
+                  }}</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputLink3"
+                    name="facebookFanpage"
+                    formControlName="fanpageUrLProfile"
+                    placeholder="https://www.facebook.com/sellerFanpage"
+                  />
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="inputLink4">{{
+                    "PROFILE.SHOP_LINK" | translate
+                  }}</label>
+                  <textarea
+                    class="form-control"
+                    id="inputLink4"
+                    name="shopLink"
+                    rows="2"
+                    formControlName="shopUrls"
+                    placeholder="{{
+                      'PROFILE.PLACEHOLDER.SHOP_LINK' | translate
+                    }}"
+                  ></textarea>
+                </div>
+                <div class="form-group col">
+                  <label>{{ "PROFILE.SHOP_ORDER_TYPE" | translate }}</label>
+                  <ng-select 
+                    formControlName= "orderSourceType"
+                    [items]="orderSourceTypes" 
+                    bindLabel="name" 
+                    bindValue="id" 
+                    multiple="true"
+                    [(ngModel)]="selectedOrderSourceType"
+                    [ngClass]="{
+                      'is-invalid':
+                        f.orderSourceType.errors &&
+                        f.orderSourceType.invalid &&
+                        (f.orderSourceType.dirty || f.orderSourceType.touched)
+                    }">
+                  </ng-select>
+                  <div
+                    *ngIf="
+                      f.orderSourceType.errors &&
+                      f.orderSourceType.invalid &&
+                      (f.orderSourceType.dirty || f.orderSourceType.touched)
+                    "
+                    class="invalid-feedback"
+                  >{{ "PROFILE.ERRORS.SHOP_ORDER_TYPE" | translate }}</div>
+                </div>
+
+                <div class="w-100"></div>
+
+                <div class="form-group col">
+                  <label>{{ "PROFILE.SHOP_ORDER_COUNTRY" | translate }}</label>
+                  <ng-select 
+                    formControlName= "orderCountries"
+                    [items]="orderCountries" 
+                    bindLabel="name" 
+                    bindValue="id" 
+                    multiple="true"
+                    [(ngModel)]="selectedCountry"
+                    [ngClass]="{
+                      'is-invalid':
+                        f.orderCountries.errors &&
+                        f.orderCountries.invalid &&
+                        (f.orderCountries.dirty || f.orderCountries.touched)
+                    }">
+                  </ng-select>
+                  <div
+                    *ngIf="
+                      f.orderCountries.errors &&
+                      f.orderCountries.invalid &&
+                      (f.orderCountries.dirty || f.orderCountries.touched)
+                    "
+                    class="invalid-feedback"
+                  >{{ "PROFILE.ERRORS.SHOP_ORDER_COUNTRY" | translate }}</div>
+                </div>
+              </div>
+            </fieldset>
+            <!-- End Nhóm thông tin shop -->
+
+            <input
+              type="submit"
+              class="btn btn-submit d-block mx-auto px-5"
+              value=" {{ 'PROFILE.ACTION.SUBMIT' | translate }}"
+              onclick="document.getElementById('registerForm').submit()"
+            />
+          </form>
+        </div>
+      </section>
+    </div>
+</main>

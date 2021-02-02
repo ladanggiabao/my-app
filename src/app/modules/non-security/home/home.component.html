@@ -1,0 +1,57 @@
+<main role="main" class="main-content">
+  <div id="topFix"></div>
+  <section class="container-md introduce ">
+    <div class="row mb-auto" id="main-container">
+      <div class="col-sm-6 home-introduce my-auto py-3">
+        <div class="px-3 py-2">
+          <h2 class="section-title">GOONDER</h2>
+          <div class="more-introduce mb-3">{{'GLOBAL.SHORT_INTRODUCE' | translate }}</div>
+          <div class="col-sm-6 d-block d-sm-none w-75 m-auto" id="right-container">
+            <img src="assets/images/app/home/right-header.svg" class="w-100 d-block mx-auto" />
+          </div>
+          <div class="button-redirect mt-3 row">
+            <a [routerLink]="['/users/login']"  class="col-lg-6 btn-verify-seller text-capitalize text-center px-2 py-3 my-2 col-12">
+              {{'HOME.LOGIN_SELLER' | translate }}
+            </a>
+            <a [routerLink]="['/users/search']" class="col-lg-6 btn-check-seller text-capitalize text-center px-2 py-3 my-2 col-12">
+              {{'HOME.CHECK_SELLER' | translate }}
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 d-none d-sm-block m-auto py-3" id="right-container">
+        <img src="assets/images/app/home/right-header.svg" class="w-100 d-block mx-auto" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Phần Thống kê Users -->
+  <!-- <section class="jumbotron text-center about">
+    <div class="container">
+      <h1 class="jumbotron-heading">
+        {{'HOME.WHAT_WE_HAVE' | translate }}
+      </h1>
+      <p class="lead text-muted  more-description">
+        {{'HOME.COOPERATION_DESCRIPTION' | translate }}
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <span class="member-total">2000+</span> <br />
+        <span class="description-total">
+          {{'GLOBAL.MEMBER' | translate }}
+        </span>
+      </div>
+
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <span class="channel-total">1000+</span> <br />
+        <span class="description-total">
+          {{'GLOBAL.CHANNEL' | translate }}
+        </span>
+      </div>
+
+
+    </div>
+  </section> -->
+
+</main>

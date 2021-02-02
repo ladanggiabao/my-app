@@ -1,0 +1,52 @@
+<main role="main" class="main-content">
+    <section class="introduce">
+        <div class=" main-container container-md px-5 py-5">
+            <h2 class="section-title text-center text-uppercase">{{ 'LOGIN' | translate }}</h2>
+            <div class="mw500 d-block mx-auto">
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                    <div class="mt-3 form-group">
+                        <input type="text" 
+                            formControlName="email" 
+                            class="form-control border-radius-10"
+                            [ngClass]="{ 'is-invalid': f.email.errors && f.email.invalid && (f.email.dirty || f.email.touched)}"
+                            placeholder="{{ 'EMAIL' | translate }}" />
+                        <div *ngIf="f.email.errors && f.email.invalid && (f.email.dirty || f.email.touched)"
+                            class="invalid-feedback">
+                            <div>{{ 'LOGIN_VIEW.ERRORS.EMAIL' | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 form-group">
+                        <input type="password" 
+                            class="form-control border-radius-10" 
+                            name="password"
+                            formControlName="password"
+                            [ngClass]="{ 'is-invalid': f.password.errors && f.password.invalid && (f.password.dirty || f.password.touched)}"
+                            placeholder="{{ 'PASSWORD' | translate }}">
+                        <div *ngIf="f.password.errors && f.password.invalid && (f.password.dirty || f.password.touched)"
+                            class="invalid-feedback">
+                            <div>{{ 'LOGIN_VIEW.ERRORS.PASSWORD' | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="mt-3 text-center">
+                        <button class="btn bg-orange font-white-color rounded-pill text-uppercase w-100">
+                            {{ 'LOGIN_VIEW.LOGIN' | translate }}
+                        </button>
+                    </div>
+                </form>
+                <span class="d-block my-3 text-center">{{ 'OR' | translate }}</span>
+                <div class="text-center">
+                    <button class="btn btn-primary rounded-pill text-uppercase w-100"
+                        (click)="loginFacebook()">
+                        {{ 'LOGIN_VIEW.LOGIN_FACEBOOK' | translate }}
+                    </button>
+                </div>
+                <hr class="bg-white">
+                <div class="text-center">
+                    <span>{{ 'LOGIN_VIEW.NO_USERNAME' | translate }}</span>
+                    <a routerLink="/users/register" class="register-href"> 
+                        {{ 'LOGIN_VIEW.TO_REGISTER_VIEW' | translate }}</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

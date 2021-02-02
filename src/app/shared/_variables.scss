@@ -1,0 +1,21 @@
+$primary-color: #f5821f;
+$main-container-color: linear-gradient(75.48deg, rgba(138, 35, 135, 0.664) 5.14%, rgba(233, 64, 87, 0.576) 49.75%, rgba(242, 113, 33, 0.616) 100%);
+$white: #FFFFFF;
+$black: #000000;
+$primary-button-color: #F27121;
+$purple: #8A2387;
+$blue: #007bff;
+$grey: #484848;
+$alpha-white: rgba(255, 255, 255, 0.75);
+$alpha-black: rgba(0,0,0,0.25);
+
+// Fonts
+$body-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+// App name font: Nova Flat
+$app-font: 'Nova Flat', cursive;
+
+// Form styles
+%input-decor {
+    border-radius: 10px !important;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.25);
+}

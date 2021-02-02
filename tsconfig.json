@@ -1,0 +1,40 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "@core-components": [ "src/app/shared/components" ],
+      "@core-components/*": [ "src/app/shared/components/*" ],
+      "@services": [ "src/app/shared/services" ],
+      "@services/*": [ "src/app/shared/services/*" ],
+      "@models": [ "src/app/shared/models"],
+      "@models/*": [ "src/app/shared/models/*"],
+      "@constants": [ "src/app/shared/constants"],
+      "@constants/*": [ "src/app/shared/constants/*"],
+      "@shared": [ "src/app/shared"],
+      "@shared/*": [ "src/app/shared/*"],
+      "@environment/*": [ "src/environments/*" ],
+      "@helpers": ["src/app/common/helpers"],
+      "@modules/*": ["src/app/modules/*"],
+      "@partials/*": ["src/app/partials/*"],
+      "@interceptor/*": ["src/app/interceptor/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

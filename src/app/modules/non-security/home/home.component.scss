@@ -1,0 +1,91 @@
+@import "../../../shared/variables";
+
+//-------------------- Main --------------------->
+.main-content {
+    height: calc(100vh - 105px - 193px);
+}
+.section-title {
+    font-size: 2.5rem !important;
+}
+.introduce {
+    color: $white;
+}
+.more-description {
+    font-size: 24px;
+    font-weight: normal;
+    color: $black;
+}
+
+#right-container {
+    width: 100%;
+    justify-content: center;
+    img {
+        max-width: 400px;
+    }
+}
+
+.more-introduce {
+    font-size: 1.5rem;
+    white-space: pre-wrap;
+}
+@media only screen and (max-width: 767.98px) {
+
+    .more-introduce {
+        font-size: 1.1rem;
+    }
+}
+
+.spacer {
+    height: 1px;
+    width: 100%;
+}
+#topFix {
+    padding-top: 30px;
+    height: 1px;
+}
+
+@media only screen and (min-width: 576px) {
+    #topFix {
+        padding-top: 80px;
+    }
+}
+@media only screen and (min-width: 990px) {
+    #topFix {
+        padding-top: 120px;
+    }
+}
+//-------------------- Assets--------------------->
+
+.btn-verify-seller {
+    background: $purple;
+    border-radius: 90px;
+    box-shadow: 5px 6px 6px rgba(0, 0, 0, 0.12);
+    border-color: $white;
+    color: $white;
+    padding: 0.3rem;
+    border: 0px;
+}
+.btn-check-seller {
+    background: $primary-button-color;
+    box-shadow: 5px 6px 6px rgba(0, 0, 0, 0.12);
+    border-radius: 90px;
+    border: 0px;
+    color: $white;
+    padding: 0.3rem;
+}
+.member-total {
+    font-size: 72px;
+    background: linear-gradient(270deg, #8A2387 28.33%, #F27121 49.72%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.channel-total {
+    background: linear-gradient(270deg, #E94057 11.22%, #C471ED 73.7%);
+    font-size: 72px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.description-total {
+    font-weight: bold;
+    font-size: 24px;
+}

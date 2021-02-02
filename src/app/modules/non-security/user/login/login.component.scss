@@ -1,0 +1,43 @@
+@import "../../../../shared//variables";
+.introduce {
+    color: $white;
+}
+.label-input {
+    color: $white;
+}
+.main-container {
+    height: calc(100vh - (2em + 18px));
+
+    .button-redirect{
+        display: flex;
+        width:100%;
+
+        img {
+        width:100%;
+        margin-top: 8px;
+        }
+    }
+}
+
+.register-href {
+    color: $white;
+    text-decoration: underline;
+}
+// .btn-back {
+//     box-shadow: 5px 6px 6px rgba(0, 0, 0, 0.12);
+//     border-radius: 90px;
+//     border: 0;
+//     background-color: $blue;
+//     color: $white;
+//     padding: 0.8rem;
+//     font-size: 1.2rem;
+// }
+
+
+
+@media only screen and (max-width: 768px) {
+    
+    .label-input {
+        font-size: 1.1rem;
+    }
+}

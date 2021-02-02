@@ -1,0 +1,54 @@
+@import "/src/app/shared/variables";
+
+#profileBasicInfo,
+#profileRightColumn {
+    padding-top: 1rem;
+}
+#fbAvtPlaceholder {
+    max-width: 270px;
+    width: 100%;
+}
+#fbNamePlaceholder {
+    font-size: 1.2rem;
+}
+
+#sellerID {
+    line-height: 2;
+    font-weight: bold;
+    background: $primary-color;
+    color: white;
+    font-size: 1.2em;
+}
+@media (max-width: 575.98px) { 
+    #fbNamePlaceholder,
+    #sellerID {
+        font-size: 2rem;
+    } }
+@media (max-width: 767.98px) {
+    #fbNamePlaceholder,
+    #sellerID {
+        font-size: 1.5rem;
+    }
+}
+// Right Column
+input.form-control, 
+textarea.form-control, 
+select.form-control {
+    @extend %input-decor;
+    height: 3em;
+}
+
+#IDCard-Front, 
+#IDCard-Back {
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid $grey;
+    @extend %input-decor;
+}
+
+#updateSellerInfo {
+    background-color: $purple;
+}

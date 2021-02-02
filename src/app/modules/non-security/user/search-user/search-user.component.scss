@@ -1,0 +1,62 @@
+@import "../../../../shared//variables";
+.introduce {
+    color: $white;
+}
+.label-input {
+    color: $white;
+}
+.main-container {
+    .home-introduce{
+        display: flex;
+        flex-direction: column;
+        justify-content: top;
+        margin: 5% auto;
+    }
+    .button-redirect {
+        display: flex;
+        width:100%;
+    }
+}
+.more-introduce {
+    font-size: 1.5rem;
+    white-space: pre-wrap;
+}
+.warning-buyer {
+    font-size: 1.3rem;
+}
+.infomation {
+    font-size: 1.3rem;
+}
+.header-content {
+    color: $white;
+}
+.btn-back {
+    box-shadow: 5px 6px 6px rgba(0, 0, 0, 0.12);
+    border-radius: 90px;
+    border: 0;
+    background-color: $blue;
+    color: $white;
+    padding: 0.8rem;
+    font-size: 1.2rem;
+}
+@media only screen and (max-width: 767.98px) {
+    // .main-container {
+    //     padding-left: 20px !important;
+    // }
+    // .more-introduce {
+    //     font-size: 0.9rem;
+    //     white-space: pre-wrap;
+    // }
+    
+    // .title {
+    //     font-size: 1.3rem;
+    //     text-transform: uppercase;
+    // }
+    // .introduce {
+    //     color: $black;
+    // }
+    // .label-input {
+    //     color: $black;
+    //     font-size: 1.1rem;
+    // }
+}
