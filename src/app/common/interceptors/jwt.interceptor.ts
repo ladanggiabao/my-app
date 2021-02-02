@@ -25,10 +25,10 @@ export class JwtInterceptor implements HttpInterceptor {
     private authService: AuthService,
     private globalService: GlobalService,
     private notifyService: NotifyService,
-    private publicKey: string,
+    // private publicKey: string,
     private router: Router) {
     this.authService.sessionInfo.subscribe(x => this.sessionInfo = x);
-    this.globalService.publicKey.subscribe(x => this.publicKey = x);
+    // this.globalService.publicKey.subscribe(x => this.publicKey = x);
   }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const accessToken: AccessToken = _.get( this.sessionInfo,'accessToken');
