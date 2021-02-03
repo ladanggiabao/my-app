@@ -19,6 +19,7 @@
             <button class="my-3 w-100 text-center d-block" id="sellerID" (click)='copyToClipboard()'>
               {{sellerID}}
             </button>
+            <input type="checkbox" class="my-3 w-100 text-center d-block" id="sellerID" (click)='isVerified=!isVerified'/>
             <!-- <p>{{ "PROFILE.HAVE_ID" | translate }}</p> -->
             <p *ngIf="isVerified" class="text-success text-center">
               <i class="fa fa-check-circle"></i>
@@ -31,7 +32,7 @@
           </ng-container>
           <ng-container *ngIf="!haveSellerID">
             <p>{{ "PROFILE.NOT_HAVE_ID" | translate }}</p>
-            <button class="mx-auto d-block btn btn-submit" (click)='viewInfomation()'>{{ 'PROFILE.EDIT_INFO' | translate}}</button>
+            <button class="mx-auto d-block btn btn-submit w-100" (click)='viewInfomation()'>{{ 'PROFILE.EDIT_INFO' | translate}}</button>
           </ng-container>
         </div>
       </section>
@@ -448,10 +449,9 @@
             <!-- End Nhóm thông tin shop -->
 
             <input
-              type="submit"
               class="btn btn-submit d-block mx-auto px-5"
               value=" {{ 'PROFILE.ACTION.SUBMIT' | translate }}"
-              onclick="document.getElementById('registerForm').submit()"
+              (click)="haveSellerID = !haveSellerID"
             />
           </form>
         </div>

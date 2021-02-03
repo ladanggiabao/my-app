@@ -55,7 +55,8 @@
         "LOGIN_SELLER": "Người bán đăng nhập",
         "CHECK_SELLER": "Kiểm tra người bán",
         "WHAT_WE_HAVE": "Chúng tôi có gì",
-        "COOPERATION_DESCRIPTION": "Tập hợp các kênh, các thành viên xác thực"
+        "COOPERATION_DESCRIPTION": "Tập hợp các kênh, các thành viên xác thực",
+        "PROFILE_VIEW" : "Đến trang profile"
     },
     "CHECK_SELLER": {
         "MESSAGE_WARNING_BUYER": "Hãy thận trọng khi giao dịch với người bán chưa xác thực",
